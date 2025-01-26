@@ -26,6 +26,14 @@ export const createBeneficiary = async (req, res) => {
     }
 }
 
+export const lastToken = async (req, res) =>{
+    try{
+        const lastToken = await PurchaseOrderModel.findOne().sort({_id:-1}).limit(1)
+        res.send(lastToken)
+    }catch(err){
+        res.send(err)
+    }
+}
 export const updateBeneficiary = async (req, res) => {
     const { id } = req.params;
     const { DepatmentName, BeneficiaryAddress,BeneficiaryName, BeneficiaryPhoneNumber, BeneficiaryEmail, BeneficiaryCnic } = req.body;
