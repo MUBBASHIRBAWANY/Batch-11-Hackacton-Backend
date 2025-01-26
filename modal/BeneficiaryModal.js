@@ -23,6 +23,9 @@ const BeneficiarySchema = new mongoose.Schema({
    BeneficiaryCnic :{
     type : String,
     required : true
+   },
+   TOken : {
+    type : Number
    }
 
 
