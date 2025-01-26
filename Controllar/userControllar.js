@@ -5,7 +5,7 @@ import  jwt  from "jsonwebtoken";
 const User = userModel
 export const userRegister = async (req,res)=>{
     try {
-        const { name, email, password, admin} = req.body;
+        const { name, email, password, dep,userType} = req.body;
         const Userimage = req.files?.image[0]?.path;
        if (!name || !email || !password) {
            return res.status(400).send("All fields are required");
@@ -18,7 +18,8 @@ export const userRegister = async (req,res)=>{
            email,
            password: hashPassword1,
            imageUrl: Userimage,
-           Admin : admin? admin : false
+           userType : userType,
+           Dep : dep
        });
 
        const token = await getAuthontication(newUser);
@@ -101,7 +102,7 @@ export const getUserById = async (req,res) => {
 
 export const updateUser = async (req, res) => {
     const {id} = req.params
-    const {name, email, password, admin} = req.body;
+    const {name, email, password, admin,} = req.body;
     try{
         const user = await User.findByIdAndUpdate(id, {
             name,

@@ -17,11 +17,14 @@ const userSchema = new mongoose.Schema({
        required : true,
        select : false
    },
-   Admin:{
-    type : Boolean,
+   userType:{
+    type : Number,
    },
    imageUrl :{
        type : String,
+   },
+   Dep : {
+    type : String
    }
 })
 
