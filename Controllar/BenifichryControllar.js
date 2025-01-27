@@ -28,7 +28,7 @@ export const createBeneficiary = async (req, res) => {
 
 export const lastToken = async (req, res) =>{
     try{
-        const lastToken = await PurchaseOrderModel.findOne().sort({_id:-1}).limit(1)
+        const lastToken = await BeneficiaryModal.findOne().sort({_id:-1}).limit(1)
         res.send(lastToken)
     }catch(err){
         res.send(err)
