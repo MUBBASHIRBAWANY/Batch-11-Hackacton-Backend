@@ -15,9 +15,9 @@ export const getAllBeneficiary = async (req, res) => {
     }
 }
 export const createBeneficiary = async (req, res) => {
-    const { DepatmentName, BeneficiaryName, BeneficiaryAddress,BeneficiaryPhoneNumber, BeneficiaryEmail, BeneficiaryCnic } = req.body;
+    const { DepatmentName, TOken, BeneficiaryName, BeneficiaryAddress,BeneficiaryPhoneNumber, BeneficiaryEmail, BeneficiaryCnic } = req.body;
     try {
-        const newDep = new BeneficiaryModal({ DepatmentName, BeneficiaryAddress,BeneficiaryName, BeneficiaryPhoneNumber, BeneficiaryEmail, BeneficiaryCnic });
+        const newDep = new BeneficiaryModal({ DepatmentName, BeneficiaryAddress,BeneficiaryName, BeneficiaryPhoneNumber, BeneficiaryEmail, BeneficiaryCnic, TOken });
         await newDep.save();
         res.status(201).json(newDep);
     } catch (e) {

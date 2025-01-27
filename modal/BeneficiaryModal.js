@@ -25,7 +25,7 @@ const BeneficiarySchema = new mongoose.Schema({
     required : true
    },
    TOken : {
-    type : Number
+    type : Number   
    }
 
 
