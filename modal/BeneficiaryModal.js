@@ -9,6 +9,9 @@ const BeneficiarySchema = new mongoose.Schema({
     type : String,
     required : true
    },
+   date : {
+    type: String
+   },
    BeneficiaryPhoneNumber :{ 
     type : String,
     required : true
