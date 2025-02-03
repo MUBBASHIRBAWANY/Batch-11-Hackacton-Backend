@@ -29,6 +29,9 @@ const BeneficiarySchema = new mongoose.Schema({
    },
    TOken : {
     type : Number   
+   }, data : {
+    type : Object,
+    default : {}
    }
 
 
