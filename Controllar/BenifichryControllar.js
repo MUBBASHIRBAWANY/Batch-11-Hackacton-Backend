@@ -15,9 +15,10 @@ export const getAllBeneficiary = async (req, res) => {
     }
 }
 export const createBeneficiary = async (req, res) => {
+
     const { DepatmentName, date,TOken, BeneficiaryName, BeneficiaryAddress,BeneficiaryPhoneNumber, BeneficiaryEmail, BeneficiaryCnic } = req.body;
     try {
-        const newDep = new BeneficiaryModal({ DepatmentName, BeneficiaryAddress,BeneficiaryName, BeneficiaryPhoneNumber, BeneficiaryEmail, BeneficiaryCnic, TOken,date });
+        const newDep = new BeneficiaryModal({ DepatmentName, BeneficiaryAddress,BeneficiaryName, BeneficiaryPhoneNumber, BeneficiaryEmail, BeneficiaryCnic, TOken, date });
         await newDep.save();
         res.status(201).json(newDep);
     } catch (e) {
@@ -36,10 +37,10 @@ export const lastToken = async (req, res) =>{
 }
 export const updateBeneficiary = async (req, res) => {
     const { id } = req.params;
-    const { DepatmentName, BeneficiaryAddress,BeneficiaryName, BeneficiaryPhoneNumber, BeneficiaryEmail, BeneficiaryCnic } = req.body;
-
+    const { DepatmentName, BeneficiaryAddress,BeneficiaryName, BeneficiaryPhoneNumber, BeneficiaryEmail, BeneficiaryCnic, data } = req.body;
+console.log(data)
     try {
-        const dep = await BeneficiaryModal.findByIdAndUpdate(id, { DepatmentName,BeneficiaryAddress,  BeneficiaryName, BeneficiaryPhoneNumber, BeneficiaryEmail, BeneficiaryCnic }, { new: true });
+        const dep = await BeneficiaryModal.findByIdAndUpdate(id, { DepatmentName,BeneficiaryAddress,  BeneficiaryName, BeneficiaryPhoneNumber, BeneficiaryEmail, data, BeneficiaryCnic }, { new: true });
         if (!dep) {
             return res.status(404).send("Department not found");
         }
