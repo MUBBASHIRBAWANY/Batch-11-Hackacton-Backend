@@ -67,7 +67,7 @@ export const deleteBeneficiary = async (req, res) => {
 
 export const getBeneficiaryByDep = async (req, res) => {
     const { dep } = req.params;
-    const Department = await Department.find({ department: dep })
+    const Department = await BeneficiaryModal.find({ department: dep })
     res.json(Department);
 }   
 
