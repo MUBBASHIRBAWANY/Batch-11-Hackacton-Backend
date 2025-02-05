@@ -37,10 +37,10 @@ export const lastToken = async (req, res) =>{
 }
 export const updateBeneficiary = async (req, res) => {
     const { id } = req.params;
-    const { DepatmentName, BeneficiaryAddress,BeneficiaryName, BeneficiaryPhoneNumber, BeneficiaryEmail, BeneficiaryCnic, data } = req.body;
+    const { date,TOken, BeneficiaryName, BeneficiaryAddress,BeneficiaryPhoneNumber, BeneficiaryEmail, BeneficiaryCnic, data } = req.body;
 console.log(data)
     try {
-        const dep = await BeneficiaryModal.findByIdAndUpdate(id, { DepatmentName,BeneficiaryAddress,  BeneficiaryName, BeneficiaryPhoneNumber, BeneficiaryEmail, data, BeneficiaryCnic }, { new: true });
+        const dep = await BeneficiaryModal.findByIdAndUpdate(id, { date, BeneficiaryName, BeneficiaryAddress,BeneficiaryPhoneNumber, BeneficiaryEmail, BeneficiaryCnic, data }, { new: true });
         if (!dep) {
             return res.status(404).send("Department not found");
         }
@@ -82,6 +82,22 @@ export const getBeneficiaryById = async (req, res) => {
             res.status(200).send({ status: true, data: Beneficiary });
         }
     } catch (err) {
+        console.error(err);
+        res.status(500).send(`Server Error: ${err.message}`);
+    }
+}
+
+export const getBeneficiaryBycnic = async (req,res) => {
+        const {BeneficiaryCnic} = req.params
+    try{
+        const Beneficiary = await BeneficiaryModal.find({ BeneficiaryCnic });
+        if (!Beneficiary) {
+            return res.status(404).send("Beneficiary not found");
+        }
+        else {
+            res.status(200).send({ status: true, data: Beneficiary });
+        }
+    }catch(err){
         console.error(err);
         res.status(500).send(`Server Error: ${err.message}`);
     }
