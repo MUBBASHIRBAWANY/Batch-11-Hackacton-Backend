@@ -4,6 +4,7 @@ import  jwt  from "jsonwebtoken";
 
 const User = userModel
 export const userRegister = async (req,res)=>{
+    console.log(req.files)
     try {
         const { name, email, password, dep,userType} = req.body;
         const Userimage = req.files?.image[0]?.path;
